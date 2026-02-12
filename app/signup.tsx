@@ -13,10 +13,13 @@ import {
   View,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function SignupScreen() {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <ScrollView
@@ -24,12 +27,12 @@ export default function LoginScreen() {
       contentContainerStyle={styles.contentContainer}
       keyboardShouldPersistTaps="handled"
     >
-      {/* Header - Sign up link */}
+      {/* Header - Sign in link */}
       <View style={styles.header}>
         <Text style={styles.headerText}>
-          Don't have an account?{" "}
-          <Link href="/signup">
-            <Text style={styles.signUpLink}>Sign up</Text>
+          Already have an account?{" "}
+          <Link href="/login">
+            <Text style={styles.headerLink}>Sign in</Text>
           </Link>
         </Text>
       </View>
@@ -44,15 +47,12 @@ export default function LoginScreen() {
       </View>
 
       {/* Title */}
-      <Text style={styles.title}>Sign in to Chess Rocket</Text>
-      <Text style={styles.subtitle}>
-        Start your journey to chess mastery today
-      </Text>
+      <Text style={styles.title}>Create an account</Text>
 
       {/* Form Container */}
       <View style={styles.formContainer}>
-        {/* Google Sign In */}
-        <Text style={styles.sectionLabel}>Sign in with Google:</Text>
+        {/* Google Sign Up */}
+        <Text style={styles.sectionLabel}>Continue with Google:</Text>
         <TouchableOpacity style={styles.googleButton} activeOpacity={0.7}>
           <Image
             source={require("@/assets/images/google-logo-frame.png")}
@@ -65,9 +65,12 @@ export default function LoginScreen() {
         {/* Divider */}
         <View style={styles.divider} />
 
-        {/* Email Sign In */}
-        <Text style={styles.sectionLabel}>Or sign in with email address:</Text>
+        {/* Email Sign Up */}
+        <Text style={styles.sectionLabel}>
+          Or continue with an email address:
+        </Text>
 
+        {/* Email */}
         <View style={styles.inputContainer}>
           <Image
             source={require("@/assets/images/mail-01.png")}
@@ -76,7 +79,7 @@ export default function LoginScreen() {
           />
           <TextInput
             style={styles.input}
-            placeholder="Email or username"
+            placeholder="Email address"
             placeholderTextColor="#9CA3AF"
             value={email}
             onChangeText={setEmail}
@@ -85,6 +88,25 @@ export default function LoginScreen() {
           />
         </View>
 
+        {/* Username */}
+        <View style={styles.inputContainer}>
+          <Ionicons
+            name="person-outline"
+            size={20}
+            color="#9CA3AF"
+            style={styles.ionIcon}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            placeholderTextColor="#9CA3AF"
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
+          />
+        </View>
+
+        {/* Password */}
         <View style={styles.inputContainer}>
           <Image
             source={require("@/assets/images/password-icon.png")}
@@ -111,10 +133,32 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Forgot Password */}
-        <TouchableOpacity style={styles.forgotPasswordButton}>
-          <Text style={styles.forgotPassword}>Forgot password?</Text>
-        </TouchableOpacity>
+        {/* Confirm Password */}
+        <View style={styles.inputContainer}>
+          <Image
+            source={require("@/assets/images/password-icon.png")}
+            style={styles.fieldIcon}
+            resizeMode="contain"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm password"
+            placeholderTextColor="#9CA3AF"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry={!showConfirmPassword}
+          />
+          <TouchableOpacity
+            onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+            style={styles.eyeButton}
+          >
+            <Ionicons
+              name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+              size={20}
+              color="#9CA3AF"
+            />
+          </TouchableOpacity>
+        </View>
 
         {/* Get Started Button */}
         <TouchableOpacity
@@ -162,7 +206,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#374151",
   },
-  signUpLink: {
+  headerLink: {
     fontWeight: "700",
     color: "#111827",
   },
@@ -180,12 +224,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "700",
     color: "#111827",
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#9CA3AF",
     textAlign: "center",
     marginBottom: 32,
   },
@@ -242,6 +280,9 @@ const styles = StyleSheet.create({
     height: 20,
     marginRight: 10,
   },
+  ionIcon: {
+    marginRight: 10,
+  },
   input: {
     flex: 1,
     fontSize: 15,
@@ -251,19 +292,11 @@ const styles = StyleSheet.create({
   eyeButton: {
     padding: 4,
   },
-  forgotPasswordButton: {
-    alignSelf: "flex-start",
-    marginBottom: 20,
-    marginTop: 4,
-  },
-  forgotPassword: {
-    fontSize: 14,
-    color: "#6B7280",
-  },
   getStartedButton: {
     borderRadius: 30,
     overflow: "hidden",
     marginBottom: 20,
+    marginTop: 8,
   },
   gradient: {
     paddingVertical: 16,
