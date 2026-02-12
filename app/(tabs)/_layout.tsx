@@ -37,6 +37,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="arrow.2.circlepath" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="state-management"
+        options={{
+          title: 'State',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="square.stack.3d.up.fill" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }

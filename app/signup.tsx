@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import {
   Image,
@@ -161,7 +161,11 @@ export default function SignupScreen() {
         </View>
 
         {/* Get Started Button */}
-        <TouchableOpacity style={styles.getStartedButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.getStartedButton}
+          activeOpacity={0.8}
+          onPress={() => router.replace("/(tabs)")}
+        >
           <LinearGradient
             colors={["#7B2FF2", "#B44CF0", "#E8638B", "#FF9A44"]}
             start={{ x: 0, y: 0.5 }}

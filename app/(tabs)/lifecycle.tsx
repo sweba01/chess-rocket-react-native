@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Text, View } from "react-native";
+import { Button, SafeAreaView, Text, View } from "react-native";
 
 const LifecycleExample = () => {
   const [count, setCount] = useState(0);
@@ -22,11 +22,19 @@ const LifecycleExample = () => {
   }, [count]);
 
   return (
-    <View style={{ marginTop: 50, alignItems: "center" }}>
-      <Text style={{ fontSize: 24 }}>{count}</Text>
-
-      <Button title="Increase" onPress={() => setCount(count + 1)} />
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <View
+        style={{
+          flex: 1,
+          marginTop: 50,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={{ fontSize: 24 }}>{count}</Text>
+        <Button title="Increase" onPress={() => setCount(count + 1)} />
+      </View>
+    </SafeAreaView>
   );
 };
 
