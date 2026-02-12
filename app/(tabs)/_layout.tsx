@@ -44,6 +44,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="square.stack.3d.up.fill" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="data-fetching"
+        options={{
+          title: 'Data',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="arrow.down.circle.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="performance"
+        options={{
+          title: 'Perf',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="bolt.fill" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
