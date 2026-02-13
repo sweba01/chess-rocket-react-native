@@ -22,6 +22,7 @@ const MAPPING = {
   'square.stack.3d.up.fill': 'layers',
   'arrow.down.circle.fill': 'cloud-download',
   'bolt.fill': 'flash-on',
+  'wrench.fill': 'build',
 } as IconMapping;
 
 /**
